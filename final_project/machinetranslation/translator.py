@@ -17,5 +17,16 @@ language_translator = LanguageTranslatorV3(
 
 language_translator.set_service_url(url)
 
-languages = language_translator.list_identifiable_languages().get_result()
-print(json.dumps(languages, indent=2))
+def englishToFrench(englishText):
+    #write the code here
+    frenchText = language_translator.translate(
+        text=englishText,
+        model_id='en-fr').get_result()
+    return frenchText["translations"][0]["translation"]
+
+def frenchToEnglish(frenchText):
+    #write the code here
+    englishText = language_translator.translate(
+        text=frenchText,
+        model_id='fr-en').get_result()
+    return englishText["translations"][0]["translation"]
